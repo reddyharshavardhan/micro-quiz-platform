@@ -1,12 +1,7 @@
+import { categories } from "../data/quizzes";
 import CategoryCard from "./components/CategoryCard";
 
-async function getCategories() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/categories`, { cache: "force-cache" });
-  return res.json();
-}
-
-export default async function HomePage() {
-  const categories = await getCategories();
+export default function HomePage() {
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">Quiz Categories</h1>
