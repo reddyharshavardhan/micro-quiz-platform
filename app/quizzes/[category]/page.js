@@ -6,9 +6,7 @@ import { quizzes as STATIC_QUIZZES } from "../../../data/quizzes";
 export default function QuizzesByCategoryPage({ params }) {
   const paramsMaybePromise = params;
   const resolvedParams =
-    typeof paramsMaybePromise.then === "function"
-      ? use(paramsMaybePromise)
-      : paramsMaybePromise;
+    typeof paramsMaybePromise.then === "function" ? use(paramsMaybePromise) : paramsMaybePromise;
   const category = resolvedParams.category;
 
   const [allQuizzes, setAllQuizzes] = useState([]);

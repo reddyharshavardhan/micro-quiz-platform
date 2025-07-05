@@ -7,13 +7,14 @@ import ProgressBar from "../../components/ProgressBar";
 
 export default function QuizPage() {
   const params = useParams();
+  // Support for both string and array param
   const id = typeof params.id === "string"
     ? params.id
     : Array.isArray(params.id)
       ? params.id[0]
       : "";
 
-  const [quiz, setQuiz] = useState(undefined); // null = not found, undefined = loading
+  const [quiz, setQuiz] = useState(undefined); // undefined: loading, null: not found
   const [curr, setCurr] = useState(0);
   const [selected, setSelected] = useState(null);
   const [answers, setAnswers] = useState([]);
@@ -22,10 +23,9 @@ export default function QuizPage() {
   const [score, setScore] = useState(0);
   const router = useRouter();
 
-  // Find quiz in localStorage (admin-created) OR static list
+  // Find quiz in localStorage OR static list
   useEffect(() => {
     if (!id) return;
-    // Get admin-created
     let match = null;
     if (typeof window !== "undefined") {
       const adminQuizzes = JSON.parse(localStorage.getItem("adminQuizzes") || "[]");
@@ -34,10 +34,10 @@ export default function QuizPage() {
     if (!match) {
       match = STATIC_QUIZZES.find(q => q.id === id);
     }
-    setQuiz(match || null); // null means not found
+    setQuiz(match || null);
   }, [id]);
 
-  // Save history/leaderboard on finish (optional, your logic here)
+  // Save leaderboard after finishing
   useEffect(() => {
     if (finished && quiz) {
       const lb = JSON.parse(localStorage.getItem("leaderboard") || "[]");
@@ -47,7 +47,7 @@ export default function QuizPage() {
         total: quiz.questions.length,
         date: new Date().toISOString(),
       });
-      lb.sort((a, b) => b.score - a.score); // Highest first
+      lb.sort((a, b) => b.score - a.score);
       localStorage.setItem("leaderboard", JSON.stringify(lb.slice(0, 10)));
     }
   }, [finished, score, quiz]);
@@ -55,7 +55,6 @@ export default function QuizPage() {
   if (quiz === undefined) return <div>Loading quiz...</div>;
   if (quiz === null) return <div>Quiz not found.</div>;
 
-  // Quiz logic
   const question = quiz.questions[curr];
   const progress = curr + 1;
   const total = quiz.questions.length;
@@ -83,7 +82,6 @@ export default function QuizPage() {
     router.push(`/quiz/${quiz.id}/review?answers=${JSON.stringify(answers)}`);
   }
 
-  // Finished state
   if (finished) {
     return (
       <div className="space-y-3">
@@ -104,7 +102,7 @@ export default function QuizPage() {
     );
   }
 
-  // Quiz question render
+  // Quiz interface
   return (
     <div>
       <div className="flex justify-between items-center mb-2">

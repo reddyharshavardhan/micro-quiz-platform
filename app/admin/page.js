@@ -1,11 +1,10 @@
 "use client";
 import { useState } from "react";
-
 import { categories } from "../../data/quizzes";
 
 export default function AdminPage() {
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState(""); 
+  const [category, setCategory] = useState("");
   const [questions, setQuestions] = useState([]);
   const [currQ, setCurrQ] = useState({ question: "", options: ["", "", "", ""], correct: 0 });
   const [created, setCreated] = useState(false);
@@ -23,7 +22,7 @@ export default function AdminPage() {
       title,
       questions,
     };
-    // Save to localStorage ('adminQuizzes')
+    // This is safe! Only runs on interaction
     const adminQuizzes = JSON.parse(localStorage.getItem("adminQuizzes") || "[]");
     adminQuizzes.push(newQuiz);
     localStorage.setItem("adminQuizzes", JSON.stringify(adminQuizzes));
@@ -50,7 +49,6 @@ export default function AdminPage() {
         <option value="">Select Category</option>
         {categories.map(cat => <option key={cat.name} value={cat.name}>{cat.name}</option>)}
       </select>
-
       <h2 className="mt-4 font-semibold">Add Questions:</h2>
       <form onSubmit={handleAddQuestion} className="mb-3">
         <input
@@ -84,14 +82,12 @@ export default function AdminPage() {
         </div>
         <button type="submit" className="bg-blue-600 text-white px-3 py-1 rounded mt-2">Add Question</button>
       </form>
-
       {questions.length > 0 && <>
         <strong className="block">Questions so far:</strong>
         <ul className="mb-3">{questions.map((q, i) =>
           <li key={i}>{q.question} <span className="text-xs text-gray-500">({q.options[q.correct]})</span></li>
         )}</ul>
       </>}
-
       <button
         disabled={!title || !category || questions.length === 0}
         onClick={handleSaveQuiz}

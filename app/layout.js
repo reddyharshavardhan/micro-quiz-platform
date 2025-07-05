@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <footer className="p-4 text-center text-xs text-gray-500">
-          © 2024 Micro-Quiz Platform Designed By Nagireddy.Harshavardhan Reddy. All rights reserved.
+          © 2025 Micro-Quiz Platform Designed By Nagireddy.Harshavardhan Reddy. All rights reserved.
         </footer>
       </body>
     </html>
