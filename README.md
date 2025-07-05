@@ -6,7 +6,7 @@ A modern, fast, and fully-featured quiz platform built with [Next.js](https://ne
 
 ## 🚀 Live Demo
 
-👉 **Try it live:** [https://micro-quiz-platform-ytoa.vercel.app/]
+👉 **Try it live:** [https://micro-quiz-platform-ytoa.vercel.app/](https://micro-quiz-platform-ytoa.vercel.app/)
 
 ---
 
@@ -14,12 +14,12 @@ A modern, fast, and fully-featured quiz platform built with [Next.js](https://ne
 
 - **Quiz Categories:** History, Science, Math, Programming—each with its own icon and description.
 - **Dynamic Routing:**  
-  - `/` — Home page with all categories (Static Generation / SSG)
-  - `/quizzes/[category]` — List quizzes by category
-  - `/quiz/[id]` — Interactive quiz page for each quiz
-  - `/quiz/[id]/review` — Review answers after a quiz
-  - `/admin` — Admin page for creating custom quizzes (browser-only, uses `localStorage`)
-  - `/leaderboard` — See the top scores
+  - `/` — Home page with all categories (Static Generation / SSG)  
+  - `/quizzes/[category]` — List quizzes by category  
+  - `/quiz/[id]` — Interactive quiz page for each quiz  
+  - `/quiz/[id]/review` — Review answers after a quiz  
+  - `/admin` — Admin page for creating custom quizzes (browser-only, uses `localStorage`)  
+  - `/leaderboard` — See the top scores  
 - **API Routes:** Next.js API endpoints serve all quiz and category data.
 - **Image Optimization:** All images use `next/image` for performance.
 - **Dark Mode:** Toggleable, persistent theme.
@@ -44,36 +44,40 @@ A modern, fast, and fully-featured quiz platform built with [Next.js](https://ne
 /data/quizzes.js       # All categories and sample quizzes (imported for SSG)
 /public/images         # Category and navbar icons
 /pages/api             # Next.js API Routes (categories, quizzes, quiz details)
-
-
+```
 
 ---
 
 ## 🧑‍💻 Technical Overview & Next.js Concepts
 
 ### Static Generation (SSG)
+
 - **Home page (`/`)**:
   - Statically generated at build time (no fetch from API route).
   - Categories data is imported directly for reliability & fast builds.
 
 ### Dynamic Routing & Data Fetching
-- **Category pages (`/quizzes/[category]`):**
+
+- **Category pages (`/quizzes/[category]`)**:
   - Dynamic, lists quizzes using URL params.
   - Merges static quizzes + user-contributed quizzes from browser.
 
-- **Individual quizzes (`/quiz/[id]`):**
+- **Individual quizzes (`/quiz/[id]`)**:
   - Dynamic, uses browser state for quiz progress.
   - Supports both static and user-created quizzes.
 
 ### API Routes
+
 - `/api/categories` — Returns all quiz categories.
 - `/api/quizzes/[category]` — Lists quizzes by category.
 - `/api/quiz/[id]` — Returns full quiz details.
 
 ### Image Optimization
+
 - All images rendered with the `next/image` component for best performance.
 
 ### Styling
+
 - Built with Tailwind CSS for rapid development and easy customization.
 
 ---
@@ -85,7 +89,7 @@ A modern, fast, and fully-featured quiz platform built with [Next.js](https://ne
 - **Admin quiz creation** happens only in the browser, using `localStorage`—safe for demo and Vercel hosting.
 - **Stateful quiz flow** is managed on the client for fast, interactive experience.
 - **Easily extendable** to use real backends or databases—data models are simple and clear.
-- **SEO:** 
+- **SEO:**  
   - Uses titles and meta descriptions for each main route.
 
 ---
@@ -101,10 +105,12 @@ A modern, fast, and fully-featured quiz platform built with [Next.js](https://ne
 ## ⚡ Challenges & Resolutions
 
 - **Vercel SSG Build Error:**  
-  - _Problem_: Initial build failed due to `fetch('/api/categories')` at build time.
+  - _Problem_: Initial build failed due to `fetch('/api/categories')` at build time.  
   - _Solution_: Switched to direct data import for SSG, per Next.js best practices.
+
 - **Hydration Warnings:**  
   - Ensured browser-only state/features are marked with `"use client";` and handled state properly.
+
 - **Dynamic `localStorage` data:**  
   - Admin quizzes and leaderboard use client-only logic.
 
@@ -117,4 +123,3 @@ A modern, fast, and fully-featured quiz platform built with [Next.js](https://ne
 - [Next.js Documentation](https://nextjs.org/docs) is an excellent resource.
 
 ---
-
