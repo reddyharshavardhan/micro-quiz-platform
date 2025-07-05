@@ -31,18 +31,20 @@ A modern, fast, and fully-featured quiz platform built with [Next.js](https://ne
 ---
 
 ## 🏗️ Project Structure
+
+```bash
 /app
-  /components   # Reusable UI (cards, timer, toggles, progress, etc)
-  /quiz/[id]    # Quiz experience pages
-  /quizzes/[category] # Quizzes by category
-  /admin        # Admin quiz creator
-  /leaderboard  # Leaderboard
-  layout.js     # Global HTML/Head and nav layout
-  page.js       # Home page, SSG!
-/data/quizzes.js # All categories and sample quizzes (imported for SSG)
-...
-/public/images  # Category and navbar icons
-/pages/api      # Next.js API Routes (categories, quizzes, quiz details)
+  /components          # Reusable UI (cards, timer, toggles, progress, etc)
+  /quiz/[id]           # Quiz experience pages
+  /quizzes/[category]  # Quizzes by category
+  /admin               # Admin quiz creator
+  /leaderboard         # Leaderboard
+  layout.js            # Global HTML/Head and nav layout
+  page.js              # Home page, SSG!
+/data/quizzes.js       # All categories and sample quizzes (imported for SSG)
+/public/images         # Category and navbar icons
+/pages/api             # Next.js API Routes (categories, quizzes, quiz details)
+
 
 
 ---
